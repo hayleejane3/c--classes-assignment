@@ -1,0 +1,1 @@
+add the couts for grade and total to student
