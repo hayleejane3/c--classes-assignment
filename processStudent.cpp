@@ -40,7 +40,7 @@ void fillStudents(std::ifstream &inFile,
         for (i = 3; i < tokens.size()-3; i++) {
           assignmentsScore.push_back(stod(tokens[i]));
         }
-        projectScore = stod(tokens[i]);
+        projectScore = stod(tokens[tokens.size()-3]);
         advisorYear = tokens[tokens.size()-1];
         hallResearch = tokens[tokens.size()-2];
 
@@ -51,6 +51,8 @@ void fillStudents(std::ifstream &inFile,
             GradStudent g1(name, yob, assignmentsScore, projectScore, hallResearch, advisorYear);
             gstudents.push_back(g1);
         }
+        tokens.clear();
+    }
 }
 
 void printStudents(const std::vector<std::reference_wrapper<Student>> &students) {

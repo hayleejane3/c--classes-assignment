@@ -25,15 +25,15 @@ UndergradStudent::UndergradStudent(std::string name,
     ++UndergradStudent::numUndergradStudents;
 }
 
-std::string getResidenceHall() {
+std::string UndergradStudent::getResidenceHall() {
     return residenceHall;
 }
 
-std::string getYearInCollege() {
+std::string UndergradStudent::getYearInCollege() {
     return yearInCollege;
 }
 
-int getNumStudents() {
+int UndergradStudent::getNumStudents() {
     return UndergradStudent::numUndergradStudents;
 }
 
@@ -50,7 +50,7 @@ double UndergradStudent::getTotal() {
     for (int i =0; i < assignmentsScore.size(); i++) {
         assignmentsTotal += assignmentsScore[i];
     }
-    return (((assignmentsTotal/(double)assignmentsScore.size()) * 0.7) + (projectScore * 0.3));
+    return (((assignmentsTotal/(double)assignmentsScore.size()) * 0.7) + (Student::getProjectScore() * 0.3));
 }
 
 std::string UndergradStudent::getGrade() {

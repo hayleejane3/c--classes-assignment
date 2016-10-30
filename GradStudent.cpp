@@ -12,7 +12,7 @@
 
 int GradStudent::numGradStudents = 0;
 
-GradStudent(std::string name,
+GradStudent::GradStudent(std::string name,
             int yearOfBirth,
             const std::vector<double> &assignmentsScore,
             double projectScore,
@@ -24,19 +24,19 @@ GradStudent(std::string name,
     ++GradStudent::numGradStudents;
 }
 
-std::string getResearchArea() {
+std::string GradStudent::getResearchArea() {
     return researchArea;
 }
 
-std::string getAdvisor() {
+std::string GradStudent::getAdvisor() {
     return advisor;
 }
 
-int getNumStudents() {
+int GradStudent::getNumStudents() {
     return GradStudent::numGradStudents;
 }
 
-virtual void printDetails() {
+void GradStudent::printDetails() {
     Student::printDetails();
     std::cout << "Type = Graduate Student" << std::endl;
     std::cout << "Research Area = " << getResearchArea() << std::endl;
@@ -49,7 +49,7 @@ double GradStudent::getTotal() {
   for (int i =0; i < assignmentsScore.size(); i++) {
       assignmentsTotal += assignmentsScore[i];
   }
-  return (((assignmentsTotal/(double)assignmentsScore.size()) * 0.5) + (projectScore * 0.5));
+  return (((assignmentsTotal/(double)assignmentsScore.size()) * 0.5) + (Student::getProjectScore() * 0.5));
 }
 
 std::string GradStudent::getGrade() {

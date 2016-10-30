@@ -49,11 +49,11 @@ double Student::getProjectScore() {
     return projectScore;
 }
 
-int getNumStudents() {
+int Student::getNumStudents() {
     return Student::numStudents;
 }
 
-virtual void printDetails() {
+void Student::printDetails() {
     std::cout << "STUDENT DETAILS:" << std::endl;
     std::cout << "Id = " << getId() << std::endl;
     std::cout << "Name = " << getName() << std::endl;
