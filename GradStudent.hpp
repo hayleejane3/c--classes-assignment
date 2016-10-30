@@ -58,7 +58,7 @@ public:
     /**
      * @brief Get the total number of graduate students.
      *
-     * @return The number of undergraduate students.
+     * @return The number of graduate students.
      */
     static int getNumStudents();
 

@@ -18,9 +18,8 @@ GradStudent::GradStudent(std::string name,
             double projectScore,
             std::string researchArea,
             std::string advisor) :
-            Student(name, yearOfBirth, assignmentsScore, projectScore), researchArea(researchArea), advisor(advisor) {
-//    GradStudent::researchArea = researchArea;
-  //  GradStudent::advisor = advisor;
+            Student(name, yearOfBirth, assignmentsScore, projectScore),
+            researchArea(researchArea), advisor(advisor) {
     ++GradStudent::numGradStudents;
 }
 
@@ -49,7 +48,8 @@ double GradStudent::getTotal() {
   for (int i =0; i < assignmentsScore.size(); i++) {
       assignmentsTotal += assignmentsScore[i];
   }
-  return (((assignmentsTotal/(double)assignmentsScore.size()) * 0.5) + (Student::getProjectScore() * 0.5));
+  return (((assignmentsTotal/(double)assignmentsScore.size()) * 0.5) +
+      (Student::getProjectScore() * 0.5));
 }
 
 std::string GradStudent::getGrade() {

@@ -50,7 +50,8 @@ double UndergradStudent::getTotal() {
     for (int i =0; i < assignmentsScore.size(); i++) {
         assignmentsTotal += assignmentsScore[i];
     }
-    return (((assignmentsTotal/(double)assignmentsScore.size()) * 0.7) + (Student::getProjectScore() * 0.3));
+    return (((assignmentsTotal/(double)assignmentsScore.size()) * 0.7) +
+      (Student::getProjectScore() * 0.3));
 }
 
 std::string UndergradStudent::getGrade() {

@@ -45,17 +45,21 @@ void fillStudents(std::ifstream &inFile,
         hallResearch = tokens[tokens.size()-2];
 
         if (tokens[0].compare("U") == 0) {
-            UndergradStudent ug1(name, yob, assignmentsScore, projectScore, hallResearch, advisorYear);
+            UndergradStudent ug1(name, yob, assignmentsScore, projectScore,
+              hallResearch, advisorYear);
             ugstudents.push_back(ug1);
         } else {
-            GradStudent g1(name, yob, assignmentsScore, projectScore, hallResearch, advisorYear);
+            GradStudent g1(name, yob, assignmentsScore, projectScore,
+              hallResearch, advisorYear);
             gstudents.push_back(g1);
         }
         tokens.clear();
+        assignmentsScore.clear();
     }
 }
 
-void printStudents(const std::vector<std::reference_wrapper<Student>> &students) {
+void printStudents(
+    const std::vector<std::reference_wrapper<Student>> &students) {
     for (auto it = students.begin(); it != students.end(); it++) {
         it->get().printDetails();
         std::cout << std::endl;
@@ -63,14 +67,38 @@ void printStudents(const std::vector<std::reference_wrapper<Student>> &students)
 }
 
 void computeStatistics(std::vector<std::reference_wrapper<Student>> &students) {
-  for (auto it = students.begin(); it != students.end(); it++) {
-      if (typeid(it->get()).name())
-      std::cout << std::endl;
-  }
+    int num;
+    double totalOfTotals = 0.0;
 
     // compute the # of students based on the type of students.
+    if (std::string(typeid(students[0].get()).name()).find("UndergradStudent")
+         != std::string::npos) {
+        num = UndergradStudent::getNumStudents();
+    } else {
+        num = GradStudent::getNumStudents();
+    }
 
     // compute the mean of the total score.
+    for (auto it = students.begin(); it != students.end(); it++) {
+        totalOfTotals += it->get().getTotal();
+    }
 
     // sort and print the students based on their total.
+    std::sort(students.begin(), students.end(),
+        [](Student &a, Student &b) -> bool {
+           return a.getTotal() > b.getTotal();
+     });
+
+     // Display:
+    std::cout << "Number of students = " << num << std::endl;
+    std::cout << "The mean of the total score = " << totalOfTotals/(double)num;
+    std::cout << std::endl;
+    std::cout << "The sorted list of students (id, name, total, grade) in";
+    std::cout << " descending order of total:" << std::endl;
+    for (auto it = students.begin(); it != students.end(); it++) {
+        std::cout << it->get().getId() << ", " << it->get().getName() << ", ";
+        std::cout << it->get().getTotal() << ", " << it->get().getGrade();
+        std::cout << std::endl;
+    }
+    std::cout << std::endl;
 }

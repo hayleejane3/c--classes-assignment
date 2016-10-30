@@ -17,7 +17,7 @@ Student::Student(std::string name,
         const std::vector<double> &assignmentsScore,
         double projectScore) {
 
-    Student::id = numStudents;
+    Student::id = numStudents + 1;
     Student::name = name;
     Student::yearOfBirth = yearOfBirth;
     Student::assignmentsScore = assignmentsScore;
@@ -64,7 +64,7 @@ void Student::printDetails() {
     }
     std::cout << getAssignmentsScore()[getAssignmentsScore().size()-1] << "]";
     std::cout << std::endl;
-    std::cout << "Project = " << getProjectScore();
-    std::cout << "Total = " << getTotal();
-    std::cout << "Grade = " << getGrade();
+    std::cout << "Project = " << getProjectScore() << std::endl;
+    std::cout << "Total = " << getTotal() << std::endl;
+    std::cout << "Grade = " << getGrade() << std::endl;
 }
